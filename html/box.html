@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Boxes with Mouse Events</title>
+    <style>
+        /* Ensure the body takes the full height of the viewport */
+        
+        body,
+        html {
+            height: 100%;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .container {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .box {
+            width: 100px;
+            height: 100px;
+            background-color: white;
+            border: 1px solid #ccc;
+            transition: background-color 0.3s;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="box"></div>
+    </div>
+
+    <script>
+        // Select all boxes
+        const boxes = document.querySelectorAll('.box');
+
+        // Add event listeners for mouse events
+        boxes.forEach(box => {
+            box.addEventListener('mouseenter', () => {
+                box.style.backgroundColor = 'orange';
+            });
+
+            box.addEventListener('mouseleave', () => {
+                box.style.backgroundColor = 'green';
+            });
+        });
+    </script>
+</body>
+
+</html>

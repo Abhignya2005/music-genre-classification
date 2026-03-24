@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Evaluation - Automatic Music Classification</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background: linear-gradient(to bottom, #FFB6C1, #FFD700);
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        button {
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        #thank-you-section {
+            font-size: 1.5rem;
+            color: #fff;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <h1>EVALUATION</h1>
+
+    <h2>Upload Music File</h2>
+    <input type="file" id="file-upload" accept="audio/*">
+    <button id="upload-btn">Upload this file</button>
+    <div id="prediction-result"></div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            let fileUpload = document.getElementById("file-upload");
+            let uploadBtn = document.getElementById("upload-btn");
+            let predictionResult = document.getElementById("prediction-result");
+
+            // Handle file upload and predict genre (mocking the prediction for now)
+            uploadBtn.addEventListener("click", function() {
+                if (fileUpload.files.length > 0) {
+                    // Here, you'd send the file to the backend model to get the prediction
+                    let genrePrediction = predictGenre(fileUpload.files[0]);
+                    predictionResult.innerText = `Predicted Genre: ${genrePrediction}`;
+                }
+            });
+
+            // Mock prediction function (replace with actual model prediction)
+            function predictGenre(file) {
+                // Replace with actual model prediction
+                const genres = ["CLASSICAL", "JAZZ", "POP", "ROCK"];
+                return genres[Math.floor(Math.random() * genres.length)];
+            }
+
+            // Redirect to "Thank You" page on key press
+            document.addEventListener('keydown', function() {
+                window.location.href = "thank-you.html";  // Redirect to Thank You page
+            });
+        });
+    </script>
+</body>
+</html>

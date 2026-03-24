@@ -1,0 +1,167 @@
+DOM(Document Object Model)
+
+we can write Script tag in both head and body but better to write in body 
+
+for validation purpose we are writing the JavaScript 
+
+everything is treated as object in JS 
+
+Document is an object which point to the webpage 
+
+----------> The DOM is a platform (independent ) and language - neutral interface that allows programs and scripts to dynamically access and update the content , structure(want to add or append or remove elements into it ), and style(backgraound color , margins etc..) of a document
+
+2 types > DOM --- HTML and XML
+
+
+Why DOM ? 
+-> to access all elements of the HTML page 
+-> to change the content of the elements of the HTML page 
+-> to apply, change and delete the CSS properties of the HTML page 
+-> to add the EVENTS(change in the behaviour) to the HTML elements 
+-> to make changes according to the EVENTS occurrence
+
+DOM structure 
+
+<html>
+<head>
+<title> web-page.html</title>
+</head>
+<body>
+<h1>Text</h1>
+<h2>Paragraph</h2>
+<div>
+<p>Nested paragraph</p>
+</div>
+</body>
+</html>
+
+DOM Method
+
+1) document.getElementById("id") ---------> return element value based on id value declared in the document
+
+2) document.getElementByTagName("tagname") ---------> return list of all elements based on tag name
+
+3) document.getElementByClassName("classname") --> returns list or collections of elements 
+
+DOM navigation using DOM method
+
+parentElement
+firstChild
+firstElementChild
+lastChild
+lastElementChild
+childElementCount
+nextElementSilbling
+previousElementSibling 
+
+---> Methods used to add/ remove / update
+
+createElement()
+Append()
+setAttribute()
+getAttribute()
+remove()
+cloneNode() --------- copy of existing one 
+replaceWith()
+has Attribute()
+removeAttribute()
+
+----- >DOM properties
+
+element.innerHTML
+element.attribute
+element.style.property
+element.outerHTML
+element.textContent
+element.parentNode
+element.childNodes
+
+CSS - properties with DOM
+
+document.getElementById("elementid").style.backgroundColor
+document.getElementById("elementid").style.color
+document.getElementById("elementid").style.width
+document.getElementById("elementid").style.height
+document.getElementById("elementid").style.border
+document.getElementById("elementid").style.visibility
+
+Java Script global methods
+
+parseInt()
+parseFloat()
+Number(value)
+isNaN(value) --- NaN ( not a number)
+isFinate(value)
+String(value)
+eval(exp) --- evaluation of any functions we use this 
+
+EVENT HANDLING 
+
+EVENT --- means the change in the behavior or state of an element is called an event
+
+
+events into 4 types 
+
+1) keyboard events
+2) mouse event
+3) form events 
+4) window events
+
+how to handle an event ?
+
+directly using the event name (or) use add action listener method 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

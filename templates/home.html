@@ -1,0 +1,111 @@
+@app.route('/')
+def home():
+    return render_template_string('''
+    <!DOCTYPE html>
+    <html>
+    <head>
+        <title>Automatic Music Classification</title>
+        <style>
+            body {
+                margin: 0;
+                padding: 0;
+                overflow: hidden;
+                background: #000;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                height: 100vh;
+            }
+            .book-container {
+                position: relative;
+                width: 60%;
+                height: 60%;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                perspective: 1200px;
+            }
+            .book-image {
+                width: 100%;
+                height: 100%;
+                background: url('/static/music_banner.jpg') no-repeat center center;
+                background-size: cover;
+                position: absolute;
+                z-index: 2;
+            }
+            .book-half {
+                position: absolute;
+                width: 50%;
+                height: 100%;
+                background: url('/static/music_banner.jpg') no-repeat center center;
+                background-size: cover;
+                transition: transform 2s ease-in-out;
+            }
+            .left-half { left: 0; background-position: left center; transform-origin: left center; }
+            .right-half { right: 0; background-position: right center; transform-origin: right center; }
+            .book-container.open .book-image { opacity: 0; }
+            .book-container.open .left-half { transform: rotateY(-90deg); }
+            .book-container.open .right-half { transform: rotateY(90deg); }
+            .welcome-text {
+                position: absolute;
+                font-family: 'Arial', sans-serif;
+                font-size: 2.5em;
+                color: white;
+                text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.8);
+                text-align: center;
+                opacity: 0;
+                transition: opacity 2s ease-in-out 2s;
+                z-index: 1;
+            }
+            .book-container.open .welcome-text { opacity: 1; }
+            .overlay {
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: rgba(0, 0, 0, 0.7);
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                color: white;
+                font-size: 1.5em;
+                font-family: Arial, sans-serif;
+                opacity: 0;
+                transition: opacity 1s ease-in-out;
+            }
+            .overlay.visible { opacity: 1; }
+        </style>
+    </head>
+    <body>
+        <div class="book-container" id="book">
+            <div class="book-image"></div>
+            <div class="book-half left-half"></div>
+            <div class="book-half right-half"></div>
+            <div class="welcome-text">Welcome to the <br> Automatic Music Classification</div>
+        </div>
+        <div class="overlay" id="overlay">Press any key to continue...</div>
+
+        <script>
+            window.onload = function() {
+                const book = document.getElementById('book');
+                const overlay = document.getElementById('overlay');
+
+                // Start the book animation without any speech
+                setTimeout(() => {
+                    book.classList.add('open');
+                }, 3000);  // Slight delay for animation
+
+                // Show the overlay with key press hint after 10 seconds
+                setTimeout(() => {
+                    overlay.classList.add('visible');
+                }, 10000);
+            };
+
+            document.addEventListener('keydown', function() {
+                window.location.href = "/welcome";
+            });
+        </script>
+    </body>
+    </html>
+    ''')

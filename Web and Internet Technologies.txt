@@ -1,0 +1,13 @@
+Web and Internet Technologies
+
+JS-ES6
+
+1.Variable Declaration: var vs let and const 
+
+2.Functions: Regular Functions vs Arrow Functions
+
+3.String Concatenation vs Template Literals 
+
+4.Default Parameters
+
+5.

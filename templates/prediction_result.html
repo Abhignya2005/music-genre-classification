@@ -1,0 +1,83 @@
+@app.route('/predict', methods=['POST'])
+def predict():
+    if 'file' not in request.files:
+        return redirect(request.url)
+    file = request.files['file']
+    if file.filename == '':
+        return redirect(request.url)
+
+    filename = secure_filename(file.filename)
+    file_path = os.path.join('uploads', filename)
+    file.save(file_path)
+
+    y, sr = librosa.load(file_path, sr=None)
+    mfccs = librosa.feature.mfcc(y=y, sr=sr, n_mfcc=13)
+    mfccs = np.mean(mfccs, axis=1)
+    mfccs_scaled = scaler.transform([mfccs])
+
+    input_tensor = torch.FloatTensor(mfccs_scaled)
+    model.eval()
+    with torch.no_grad():
+        output = model(input_tensor)
+    _, predicted_class = torch.max(output, 1)
+
+    genre = y_train.unique()[predicted_class.item()]
+
+    # Map genre to images
+    genre_image_map = {
+        'classical': 'classical1.jpg',
+        'Jazz': 'jazz.jpg',
+        'Pop': 'pop.jpg',
+        'Rock': 'rock.jpg'
+    }
+    genre_image = genre_image_map.get(genre)
+
+    return render_template_string(''' 
+    <!DOCTYPE html>
+    <html>
+    <head>
+        <title>Prediction Result</title>
+        <style>
+            body {
+                font-family: Arial, sans-serif;
+                background: #2a3d66;
+                color: #ffffff;
+                text-align: center;
+                padding: 20px;
+            }
+            h1 {
+                color: #ffffff;
+                margin-bottom: 20px;
+            }
+            .genre-text {
+                font-size: 24px;
+                margin-bottom: 20px;
+            }
+            .genre-image {
+                max-width: 300px;
+                height: auto;
+                border-radius: 10px;
+                border: 2px solid #ffffff;
+                margin-bottom: 20px;
+            }
+            .thank-you {
+                margin-top: 30px;
+                font-size: 18px;
+                color: #f1f1f1;
+            }
+        </style>
+    </head>
+    <body>
+        <h1>Predicted Genre</h1>
+        <p class="genre-text">{{ genre }}</p>
+        <img src="/static/{{ genre_image }}" alt="Genre Image" class="genre-image">
+        <p class="thank-you">Press any key to continue...</p>
+
+        <script>
+            document.addEventListener('keydown', function() {
+                window.location.href = "/thankyou";
+            });
+        </script>
+    </body>
+    </html>
+    ''', genre=genre, genre_image=genre_image)

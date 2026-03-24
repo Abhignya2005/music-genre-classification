@@ -1,0 +1,22 @@
+body {
+    font-family: Arial,sans-serif;
+    display: flex;
+    justify-content: content;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    background-color: white;
+}
+.container {
+    text-align: center;
+    background-color: brown;
+    padding: 20px;
+    border-radius: 5px;
+    color: white;
+}
+input {
+    margin: 10px 0;
+}
+#message {
+    color: yellow;
+}

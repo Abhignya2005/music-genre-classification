@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Number Validation</title>
+    <link rel="stylesheet" href="number.css">
+</head>
+<body>
+    <div class="container">
+        <label for="numberInput">Enter a number (choose between 1 to 10)</label><br>
+        <input type="number" id="numberInput" min="1" max="10">
+        <button id="generateBtn">Print</button>
+        <div id="message"></div>
+        <script>
+            const button = document.getElementById('generateBtn');
+            const messageElement = document.getElementById('message');
+
+            button.addEventListener('click', function() {
+                const input = parseInt(document.getElementById('numberInput').value, 10);
+                messageElement.innerHTML = ' ';
+                
+                if (input >= 1 && input <= 10) {
+                    let multiplicationTable = `<p>Multiplication Table for ${input}:</p>`;
+                    for (let i = 1; i <= 10; i++) {
+                        multiplicationTable += `<p>${input} x ${i} = ${input * i}</p>`;
+                    }
+                    messageElement.innerHTML = multiplicationTable;
+                } else {
+                    messageElement.textContent = '1 to 10 only permitted';
+                }
+            });
+        </script>
+    </div>
+</body>
+</html>

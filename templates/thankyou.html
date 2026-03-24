@@ -1,0 +1,42 @@
+@app.route('/thankyou')
+def thank_you():
+    return render_template_string('''
+    <!DOCTYPE html>
+    <html>
+    <head>
+        <title>Thank You</title>
+        <style>
+            body {
+                font-family: 'Dancing Script', cursive; /* Handwriting-style font */
+                background: #2a3d66;
+                color: #ffffff;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                height: 100vh;
+                margin: 0;
+                text-align: center;
+            }
+            h1 {
+                font-size: 48px; /* Larger font size */
+                margin-bottom: 20px;
+            }
+            p {
+                font-size: 18px;
+            }
+        </style>
+        <link href="https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap" rel="stylesheet"> <!-- Handwriting font -->
+    </head>
+    <body>
+        <div>
+            <h1>Thank You!</h1>
+        </div>
+        
+        <script>
+            document.addEventListener('keydown', function() {
+                window.close();
+            });
+        </script>
+    </body>
+    </html>
+    ''')

@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Form</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #333;
+            color: white;
+        }
+        .login-form {
+            background-color: #333;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            width: 500px;
+        }
+        .form-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        .form-row label {
+            font-size: 1.1em;
+            color: red;
+            width: 100px;
+            margin-right: 10px;
+        }
+        .form-row input[type="text"],
+        .form-row input[type="password"] {
+            width: calc(100% - 110px);
+            padding: 8px;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+        }
+        .button-row {
+            display: flex;
+            justify-content: center;
+            margin-top: 10px;
+        }
+        .button-row button {
+            padding: 8px 15px;
+            margin-right: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .button-row button[type="reset"] {
+            background-color: #f44336;
+        }
+        .error-message {
+            color: #ff6666;
+            font-size: 0.9em;
+            text-align: center;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="login-form">
+    <form onsubmit="return validateForm()">
+        <div class="form-row">
+            <label for="userId">User Name</label>
+            <input type="text" id="userId" placeholder="Enter User ID">
+        </div>
+        <div class="form-row">
+            <label for="password">Password</label>
+            <input type="password" id="password" placeholder="Enter Password">
+        </div>
+        <div class="button-row">
+            <button type="submit">Submit</button>
+            <button type="reset">Reset</button>
+        </div>
+        <div class="error-message" id="errorMessage">User ID or Password cannot be left blank</div>
+    </form>
+</div>
+
+<script>
+    document.getElementById("errorMessage").style.display = "none";
+
+    function validateForm() {
+        const userId = document.getElementById('userId').value;
+        const password = document.getElementById('password').value;
+        const errorMessage = document.getElementById('errorMessage');
+
+        if (userId === "" || password === "") {
+            errorMessage.style.display = "block";
+            return false;  // Prevent form submission
+        } else {
+            errorMessage.style.display = "none";
+            alert("Form submitted successfully!");
+            return true;  // Allow form submission
+        }
+    }
+</script>
+
+</body>
+</html>

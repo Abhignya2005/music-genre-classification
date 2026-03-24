@@ -1,0 +1,20 @@
+import librosa
+import librosa.display
+import matplotlib.pyplot as plt
+import numpy as np
+
+audip_path = "C:\\Users\\Abhignya\\Downloads\\eterna-cancao-wav-12569.wav"
+y,sr = librosa.load("audio_path")
+spect = librosa.feature.melspectrogram(y=y , sr = sr)
+spect_dB=librosa.power_to_db(spect,ref=np.max)
+plt.figure(figsize=(1.28,1.28),dpi=100)
+librosa.display.spectshow(spect_dB,sr=sr,x_axis='time',y_axis='mel')
+plt.colorbar(format='%+2.0fdB')
+plt.title('Mel-frequency spectrogram')
+plt.xlabel('Time')
+plt.ylabel('Frequency(Hz)')
+plt.tight_layout()
+plt.savefig('resized_spectrogram_480*480.png,dpi=100')
+plt.show()
+
+ 

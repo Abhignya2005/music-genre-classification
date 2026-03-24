@@ -1,0 +1,11 @@
+
+node_modules/
+__pycache__/
+.env
+venv/
+*.pkl
+*.h5
+*.pth
+*.wav
+*.csv
+uploads/
